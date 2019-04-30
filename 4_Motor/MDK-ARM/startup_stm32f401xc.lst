@@ -759,11 +759,11 @@ ARM Macro Assembler    Page 12
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=quad_v4_blinky\startup_stm32f401xc.d -oquad_v4_blinky\startup_s
-tm32f401xc.o -I.\RTE\_Quad_V4_Blinky -I"D:\Program Files\Keil\ARM\PACK\ARM\CMSI
-S\5.4.0\CMSIS\Core\Include" -I"D:\Program Files\Keil\ARM\PACK\Keil\STM32F4xx_DF
-P\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__MICROLIB SET
-A 1" --predefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1" --pred
-efine="STM32F401xC SETA 1" --list=startup_stm32f401xc.lst startup_stm32f401xc.s
+tm32f401xc.o -I.\RTE\_Quad_V4 -I"D:\Program Files\Keil\ARM\PACK\ARM\CMSIS\5.4.0
+\CMSIS\Core\Include" -I"D:\Program Files\Keil\ARM\PACK\Keil\STM32F4xx_DFP\2.13.
+0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__MICROLIB SETA 1" --
+predefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1" --predefine="
+STM32F401xC SETA 1" --list=startup_stm32f401xc.lst startup_stm32f401xc.s
 
 
 

@@ -22,7 +22,7 @@
   </DaveTm>
 
   <Target>
-    <TargetName>Quad_V4_Blinky</TargetName>
+    <TargetName>Quad_V4</TargetName>
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
@@ -624,7 +624,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>29</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Peripherals\mpu6050.c</PathWithFileName>

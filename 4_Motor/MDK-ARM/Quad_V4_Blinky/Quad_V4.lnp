@@ -28,7 +28,7 @@
 "quad_v4_blinky\stm32f4xx_hal_i2c_ex.o"
 "quad_v4_blinky\system_stm32f4xx.o"
 "quad_v4_blinky\mpu6050.o"
---library_type=microlib --strict --scatter "Quad_V4_Blinky\Quad_V4_Blinky.sct"
+--library_type=microlib --strict --scatter "Quad_V4_Blinky\Quad_V4.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list "Quad_V4_Blinky.map" -o Quad_V4_Blinky\Quad_V4_Blinky.axf
+--list "Quad_V4.map" -o Quad_V4_Blinky\Quad_V4.axf
