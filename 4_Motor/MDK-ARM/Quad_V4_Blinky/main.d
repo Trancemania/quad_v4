@@ -1,0 +1,46 @@
+quad_v4_blinky\main.o: ../Src/main.c
+quad_v4_blinky\main.o: ../Inc/main.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+quad_v4_blinky\main.o: ../Inc/stm32f4xx_hal_conf.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xc.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Include/core_cm4.h
+quad_v4_blinky\main.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Include/core_cmInstr.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Include/core_cmFunc.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Include/core_cmSimd.h
+quad_v4_blinky\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+quad_v4_blinky\main.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+quad_v4_blinky\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\FreeRTOS.h
+quad_v4_blinky\main.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stddef.h
+quad_v4_blinky\main.o: ../Inc/FreeRTOSConfig.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\projdefs.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\portable.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\deprecated_definitions.h
+quad_v4_blinky\main.o: ..\FreeRTOS\portable\RVDS\ARM_CM4F\portmacro.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\mpu_wrappers.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\task.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\list.h
+quad_v4_blinky\main.o: ..\FreeRTOS\include\queue.h
+quad_v4_blinky\main.o: ..\Peripherals\mpu6050.h
