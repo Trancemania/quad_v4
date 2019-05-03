@@ -20,7 +20,8 @@
 #include "mpu6050.h"
 
 /* Default I2C address */
-#define MPU6050_I2C_ADDR			0x68
+//#define MPU6050_I2C_ADDR			0x68
+#define MPU6050_I2C_ADDR			0xD0
 
 /* Who I am register value */
 #define MPU6050_I_AM				0x68
