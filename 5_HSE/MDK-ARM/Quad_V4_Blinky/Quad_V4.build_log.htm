@@ -28,10 +28,13 @@ Project File Date:  04/30/2019
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Program Files\Keil\ARM\ARMCC\Bin'
 Build target 'Quad_V4'
 compiling main.c...
+../Src/main.c(349): warning:  #177-D: function "MX_USART6_UART_Init"  was declared but never referenced
+  static void MX_USART6_UART_Init(void)
+../Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=16604 RO-data=468 RW-data=116 ZI-data=63820  
+Program Size: Code=16548 RO-data=468 RW-data=116 ZI-data=63820  
 FromELF: creating hex file...
-"Quad_V4_Blinky\Quad_V4.axf" - 0 Error(s), 0 Warning(s).
+"Quad_V4_Blinky\Quad_V4.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,7 +57,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.1.2
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

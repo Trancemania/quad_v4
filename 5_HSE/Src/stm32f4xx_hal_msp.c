@@ -117,7 +117,7 @@ void HAL_MspInit(void)
 
   /* USER CODE BEGIN MspInit 1 */
 	HAL_UART_MspInit(&huart1);
-	HAL_UART_MspInit(&huart6);
+//	HAL_UART_MspInit(&huart6);
 	HAL_I2C_MspInit(&hi2c1);
 	
   /* USER CODE END MspInit 1 */

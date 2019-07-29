@@ -146,11 +146,11 @@ int main(void)
   MX_GPIO_Init();
 	MX_DMA_Init();
   MX_USART1_UART_Init();
-  MX_USART6_UART_Init();
+//  MX_USART6_UART_Init();  //v4_4 not use this
 	MX_I2C1_Init();
 	MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+	printf("AT+VER\r\n");
   /* USER CODE END 2 */
 
 	/* --- APPLICATION TASKS CAN BE CREATED HERE --- */
@@ -165,8 +165,11 @@ int main(void)
 									MPU6050_Accelerometer_2G,
 									MPU6050_Gyroscope_250s ) == MPU6050_Result_Ok)
 	  {
-		  printf("\n\r MPU6050 Ready! \n\r");;
+		  printf("\n\r MPU6050 Ready! \n\r");
 	  }
+		else{
+				printf("\n\r MPU6050 not Ready! \n\r");
+		}
 	/* The suicide tasks must be created last as they need to know how many
 	tasks were running prior to their creation in order to ascertain whether
 	or not the correct/expected number of tasks are running at any given time. */
@@ -189,7 +192,7 @@ PUTCHAR_PROTOTYPE
   /* Place your implementation of fputc here */
   /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1,0xFFFF); 
-  HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1,0xFFFF); 
+//  HAL_UART_Transmit(&huart6, (uint8_t *)&ch, 1,0xFFFF); 
 //  HAL_UART_Transmit_DMA(&huart6, (uint8_t *)&ch, 1); 
 
   return ch;
@@ -215,8 +218,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 64;
+  RCC_OscInitStruct.PLL.PLLM = 8;   //4 v4_3 use
+  RCC_OscInitStruct.PLL.PLLN = 168;  //64
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -321,7 +324,7 @@ static void MX_USART1_UART_Init(void)
 
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
+  huart1.Init.BaudRate = 9600;
   huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_1;
   huart1.Init.Parity = UART_PARITY_NONE;
@@ -510,7 +513,7 @@ void vRED_LEDTask( void *pvParameters )
   for(;;)
   {
     vTaskDelay(pdMS_TO_TICKS(1000));
-		printf("\n\r System Ready! \n\r");
+//		printf("\n\r System Ready! \n\r");
 //		if(HAL_UART_Transmit(&huart1, (uint8_t*)aTxBuffer, TXBUFFERSIZE,0xFFFF)!= HAL_OK)
 //  {
 //    Error_Handler();
