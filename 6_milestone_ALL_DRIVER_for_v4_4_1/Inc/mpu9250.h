@@ -19,7 +19,7 @@ extern "C" {
 
 /* Default I2C clock */
 #ifndef MPU9250_I2C_CLOCK
-	#define MPU9250_I2C_CLOCK              10000            /*!< Default I2C clock speed */
+	#define MPU9250_I2C_CLOCK              400000            /*!< Default I2C clock speed */
 #endif
 
 /**
@@ -103,8 +103,23 @@ typedef struct  {
 	uint8_t MPU9250_Address; /*!< I2C address of MPU9250 device. */
 	uint8_t AK8963_Address;  /*!< I2C address of AK8963 device. */
 	float Gyro_Mult;         /*!< Gyroscope corrector from raw data to "degrees/s". Only for private use */
+	float Gyro_biasx;
+	float Gyro_biasy;
+	float Gyro_biasz;
+	float Gyro_testx;
+	float Gyro_testy;
+	float Gyro_testz;
 	float Acce_Mult;         /*!< Accelerometer corrector from raw data to "g". Only for private use */
+	float Acce_biasx;
+	float Acce_biasy;
+	float Acce_biasz;
+	float Acce_testx;
+	float Acce_testy;
+	float Acce_testz;
 	float Magn_Mult;         /*!< Magnetometer corrector from raw data to "mG". Only for private use */
+	float Magn_biasx;
+	float Magn_biasy;
+	float Magn_biasz;
 	float Magn_Calix;				 /*!< Magnetometer x-axis calibration. Only for private use */
 	float Magn_Caliy;				 /*!< Magnetometer y-axis calibration. Only for private use */
 	float Magn_Caliz;				 /*!< Magnetometer z-axis calibration. Only for private use */
@@ -150,6 +165,24 @@ typedef union {
  */
 
 /**
+ * @brief  Detect MPU9250
+ * @param  *DataStruct: Pointer to empty @ref MPU9250_t structure
+ * @param  DeviceNumber: MPU9250 has one pin, AD0 which can be used to set address of device.
+ *          This feature allows you to use 2 different sensors on the same board with same library.
+ *          If you set AD0 pin to low, then this parameter should be MPU9250_Device_0,
+ *          but if AD0 pin is high, then you should use MPU9250_Device_1
+ *
+ *          Parameter can be a value of @ref MPU9250_Device_t enumeration
+ * @retval Initialization status:
+ *            - MPU9250_Result_t: Everything OK
+ *            - Other member: in other cases
+ */
+
+MPU9250_Result MPU9250_Detect(I2C_HandleTypeDef* I2Cx,
+														MPU9250* DataStruct,
+														MPU9250_Device DeviceNumber);
+
+/**
  * @brief  Initializes MPU9250 and I2C peripheral
  * @param  *DataStruct: Pointer to empty @ref MPU9250_t structure
  * @param  DeviceNumber: MPU9250 has one pin, AD0 which can be used to set address of device.
@@ -160,11 +193,11 @@ typedef union {
  *          Parameter can be a value of @ref MPU9250_Device_t enumeration
  * @param  AccelerometerSensitivity: Set accelerometer sensitivity. This parameter can be a value of @ref MPU9250_Accelerometer_t enumeration
  * @param  GyroscopeSensitivity: Set gyroscope sensitivity. This parameter can be a value of @ref MPU9250_Gyroscope_t enumeration
+ * @param  MagnetometerSensitivity: Set magnetometer sensitivity. This parameter can be a value of @ref MPU9250_Magnetometer_t enumeration
  * @retval Initialization status:
  *            - MPU9250_Result_t: Everything OK
  *            - Other member: in other cases
  */
- 												
 MPU9250_Result MPU9250_Init(I2C_HandleTypeDef* I2Cx,
 														MPU9250* DataStruct,
 														MPU9250_Device DeviceNumber,
@@ -246,6 +279,15 @@ MPU9250_Result MPU9250_ReadAccelerometer(I2C_HandleTypeDef* I2Cx,MPU9250* DataSt
 MPU9250_Result MPU9250_ReadGyroscope(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
 
 /**
+ * @brief  Reads magnetometer data from sensor
+ * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
+ * @retval Member of @ref MPU9250_Result_t:
+ *            - MPU9250_Result_Ok: everything is OK
+ *            - Other: in other cases
+ */
+MPU9250_Result MPU9250_ReadMagnetometer(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
+
+/**
  * @brief  Reads temperature data from sensor
  * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
  * @retval Member of @ref MPU9250_Result_t:
@@ -255,13 +297,40 @@ MPU9250_Result MPU9250_ReadGyroscope(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct
 MPU9250_Result MPU9250_ReadTemperature(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
 
 /**
- * @brief  Reads accelerometer, gyroscope and temperature data from sensor
+ * @brief  Reads accelerometer, gyroscope, temperature and magnetometer data from sensor
  * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
  * @retval Member of @ref MPU9250_Result_t:
  *            - MPU9250_Result_Ok: everything is OK
  *            - Other: in other cases
  */
 MPU9250_Result MPU9250_ReadAll(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
+
+/**
+ * @brief  Calibrate accelerometer, gyroscope
+ * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
+ * @retval Member of @ref MPU9250_Result_t:
+ *            - MPU9250_Result_Ok: everything is OK
+ *            - Other: in other cases
+ */
+MPU9250_Result MPU9250_Calibrate(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
+
+/**
+ * @brief  Test accelerometer, gyroscope
+ * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
+ * @retval Member of @ref MPU9250_Result_t:
+ *            - MPU9250_Result_Ok: everything is OK
+ *            - Other: in other cases
+ */
+MPU9250_Result MPU9250_Selftest(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
+
+/**
+ * @brief  Calibrate magnetometer
+ * @param  *DataStruct: Pointer to @ref MPU9250_t structure to store data to
+ * @retval Member of @ref MPU9250_Result_t:
+ *            - MPU9250_Result_Ok: everything is OK
+ *            - Other: in other cases
+ */
+MPU9250_Result AK8963_Calibration(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct);
 
 /**
  * @}

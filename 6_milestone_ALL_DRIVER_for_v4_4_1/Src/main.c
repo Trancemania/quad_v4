@@ -45,6 +45,12 @@
 /* USER CODE BEGIN Includes */
 
 #include "mpu9250.h"
+#include "main_api.h"
+#ifdef ARM_MATH_CM4
+	#include <math.h>
+	#include "arm_math.h"
+#endif 
+
 
 /* USER CODE END Includes */
 
@@ -55,7 +61,6 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 #ifdef __GNUC__
   /* With GCC, small printf (option LD Linker->Libraries->Small printf
      set to 'Yes') calls __io_putchar() */
@@ -73,6 +78,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
+
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
@@ -86,7 +92,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_I2C1_Init(void);
-
 /* USER CODE BEGIN PFP */
 
 	
@@ -103,9 +108,9 @@ static void MX_I2C1_Init(void);
   */
 int main(void)
 {
-	int flag = 0;
   /* USER CODE BEGIN 1 */
-
+	MPU9250_Result MPU9250_state;
+	float ax, ay, az, gx, gy, gz, mx, my, mz, tmp;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -128,36 +133,55 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
-	
   /* USER CODE BEGIN 2 */
 	
 	if(MPU9250_Init(&hi2c1,
-									&mpu1,
-									MPU9250_Device_0,
-									MPU9250_Accelerometer_16G,
-									MPU9250_Gyroscope_2000s,
-									MPU9250_Magnetometer_16bit)== MPU9250_Result_Ok){
-		flag = 1;
-		printf("\n\r MPU9250 Ready! \n\r");;
+									 &mpu1,
+									 MPU9250_Device_0,
+									 MPU9250_Accelerometer_16G,
+									 MPU9250_Gyroscope_2000s,
+									 MPU9250_Magnetometer_16bit)==MPU9250_Result_Ok)	{
+		MPU9250_state = MPU9250_Result_Ok;						 
+		printf("\n\r mpu9250 Ready! \n\r");
 	}
-									
+	else {
+		printf("\n\r mpu9250 not Ready! \n\r");
+	}
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  while (1)
-  {
   /* USER CODE BEGIN WHILE */
-		printf("\n\r System Ready! \n\r");
-		if (flag == 1){
-			printf("\n\r mpu9250 Ready! \n\r");
-		}
-		else {
-			printf("\n\r mpu9250 not Ready! \n\r");
-		}
-		HAL_Delay(1000);
-	/* USER CODE END WHILE */
-  }
-	/* USER CODE BEGIN 3 */
+	while (1) {		
+		printf("\n\r Read MPU9250 data \n\r");
+//		if (MPU9250_state == MPU9250_Result_Ok){		//MPU9250_Detect if(HAL_I2C_IsDeviceReady(Handle,mpu9250_address,2,5)!=HAL_OK)
+			MPU9250_ReadAll(&hi2c1,&mpu1);
+			ax = (float)mpu1.Accelerometer_X*mpu1.Acce_Mult;  // get actual a value, this depends on scale being set
+			ay = (float)mpu1.Accelerometer_Y*mpu1.Acce_Mult;   
+			az = (float)mpu1.Accelerometer_Z*mpu1.Acce_Mult;
+			gx = (float)mpu1.Gyroscope_X*mpu1.Gyro_Mult;  // get actual g value, this depends on scale being set
+			gy = (float)mpu1.Gyroscope_Y*mpu1.Gyro_Mult;   
+			gz = (float)mpu1.Gyroscope_Z*mpu1.Gyro_Mult;
+			mx = (float)mpu1.Magnetometer_X*mpu1.Magn_Mult*mpu1.Magn_Calix;  // get actual m value, this depends on scale being set
+			my = (float)mpu1.Magnetometer_Y*mpu1.Magn_Mult*mpu1.Magn_Caliy;   
+			mz = (float)mpu1.Magnetometer_Z*mpu1.Magn_Mult*mpu1.Magn_Caliz;
+			tmp = ((float) mpu1.Temperature); // /333.87f + 21.0f;
+			HAL_Delay(100);
+			printf("ax = %f ay = %f az = %f  mg\n\r", 1000*ax, 1000*ay, 1000*az);
+			HAL_Delay(10);
+			printf("gx = %f gy = %f gz = %f  deg/s\n\r", gx,gy,gz);
+			HAL_Delay(10);
+			printf("mx = %f my = %f mz = %f  mG\n\r", mx,my,mz);
+			HAL_Delay(10);
+			printf("temperature = %f  C\n\r", tmp);
+//		}
+//		else {
+//		}
+		HAL_Delay(2500);
+	}
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
 	
   /* USER CODE END 3 */
 }
@@ -198,7 +222,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -220,7 +244,7 @@ static void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 10000;
+  hi2c1.Init.ClockSpeed = 400000;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -286,7 +310,6 @@ static void MX_GPIO_Init(void)
 
 }
 
-
 /* USER CODE BEGIN 4 */
 
 PUTCHAR_PROTOTYPE
@@ -294,7 +317,7 @@ PUTCHAR_PROTOTYPE
   /* Place your implementation of fputc here */
   /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1,0xFFFF); 
-//  HAL_UART_Transmit_DMA(&huart6, (uint8_t *)&ch, 1); 
+//  HAL_UART_Transmit_DMA(&huart1, (uint8_t *)&ch, 1); 
 
   return ch;
 }

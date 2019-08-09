@@ -31,3 +31,8 @@
 .\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 .\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 .\main.o: ../Inc/mpu9250.h
+.\main.o: ../Inc/main_api.h
+.\main.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\math.h
+.\main.o: ../Drivers/CMSIS/Include/arm_math.h
+.\main.o: ../Drivers/CMSIS/Include/core_cm4.h
+.\main.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\string.h

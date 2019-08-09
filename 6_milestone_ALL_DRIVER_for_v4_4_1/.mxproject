@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=F:/TEMP/STM32F401RB_HSE/STM32F401RB_HSE/Inc
+HeaderPath=F:/SYNC/Workspace/Keil/quad_v4/6_milestone_ALL_DRIVER_for_v4_4_1/Inc
 HeaderFiles=stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;
-SourcePath=F:/TEMP/STM32F401RB_HSE/STM32F401RB_HSE/Src
+SourcePath=F:/SYNC/Workspace/Keil/quad_v4/6_milestone_ALL_DRIVER_for_v4_4_1/Src
 SourceFiles=stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]
