@@ -12,5 +12,7 @@
 #include "stdio.h"
 
 int fputc(int ch, FILE *f);
+void DMA_printf(const char *format,...);
+
 
 #endif /* __MAIN_API_H */

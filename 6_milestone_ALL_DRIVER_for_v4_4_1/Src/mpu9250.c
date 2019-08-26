@@ -1305,7 +1305,7 @@ MPU9250_Result AK8963_Calibration(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct)
 	MPU9250 magcali;
 	magcali.AK8963_Address = DataStruct->AK8963_Address;
 	
-	printf("Mag Calibration: Wave device in a figure eight pattern until done!");
+	DMA_printf("Mag Calibration: Wave device in a figure eight pattern until done!");
 	HAL_Delay(4000);
 
 // shoot for ~fifteen seconds of mag data
@@ -1343,7 +1343,7 @@ MPU9250_Result AK8963_Calibration(I2C_HandleTypeDef* I2Cx,MPU9250* DataStruct)
 	DataStruct->Magn_biasy = avg_rad/((float)mag_scale[1]);
 	DataStruct->Magn_biasz = avg_rad/((float)mag_scale[2]);
 
-	printf("Mag Calibration done!");
+	DMA_printf("Mag Calibration done!");
 	return MPU9250_Result_Ok;
  }
 

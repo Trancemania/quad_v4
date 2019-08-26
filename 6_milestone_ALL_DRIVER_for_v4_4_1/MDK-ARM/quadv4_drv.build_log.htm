@@ -27,11 +27,14 @@ Project File Date:  08/08/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Program Files\Keil\ARM\ARMCC\Bin'
 Build target 'quadv4_drv'
-compiling mpu9250.c...
+compiling main.c...
+../Src/main.c(116): warning:  #550-D: variable "MPU9250_state"  was set but never used
+  	MPU9250_Result MPU9250_state;
+../Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=11976 RO-data=460 RW-data=20 ZI-data=1284  
+Program Size: Code=13864 RO-data=468 RW-data=16 ZI-data=1480  
 FromELF: creating hex file...
-".\quadv4_drv.axf" - 0 Error(s), 0 Warning(s).
+".\quadv4_drv.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

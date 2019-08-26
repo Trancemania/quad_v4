@@ -3,10 +3,10 @@
 .\system_stm32f4xx.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xc.h
 .\system_stm32f4xx.o: ../Drivers/CMSIS/Include/core_cm4.h
 .\system_stm32f4xx.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/core_cmInstr.h
+.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/cmsis_version.h
+.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
 .\system_stm32f4xx.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
-.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/core_cmFunc.h
-.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/core_cmSimd.h
+.\system_stm32f4xx.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 .\system_stm32f4xx.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 .\system_stm32f4xx.o: ../Inc/stm32f4xx_hal_conf.h
@@ -14,7 +14,7 @@
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 .\system_stm32f4xx.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-.\system_stm32f4xx.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\system_stm32f4xx.o: D:\Program Files\Keil\ARM\ARMCC\Bin\..\include\stddef.h
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc_ex.h
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h
 .\system_stm32f4xx.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio_ex.h
